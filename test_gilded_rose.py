@@ -81,6 +81,18 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update()
         self.assertEquals(43, items[0].quality)
 
+    def test_conjured_quality(self):
+        items = [Item("Conjured Mana Cake", 6, 2)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update()
+        self.assertEquals(0, items[0].quality)
+
+    def test_conjured_sell_in(self):
+        items = [Item("Conjured Mana Cake", 6, 40)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update()
+        self.assertEquals(5, items[0].sell_in)
+
     def test_backstage_quality_expires(self):
         items = [Item("Backstage passes to a TAFKAL80ETC concert", -6, 40)]
         gilded_rose = GildedRose(items)
@@ -99,17 +111,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update()
         self.assertEquals(5, items[0].sell_in)
 
-    def test_conjured_quality(self):
-        items = [Item("Conjured Mana Cake", 6, 2)]
-        gilded_rose = GildedRose(items)
-        gilded_rose.update()
-        self.assertEquals(0, items[0].quality)
 
-    def test_conjured_sell_in(self):
-        items = [Item("Conjured Mana Cake", 6, 40)]
-        gilded_rose = GildedRose(items)
-        gilded_rose.update()
-        self.assertEquals(5, items[0].sell_in)
 
 if __name__ == '__main__':
     unittest.main()
